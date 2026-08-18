@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ownly Theme Configuration",
+  "description": "Shopify theme configuration model. Maps to settings_schema.json and settings_data.json.",
+  "type": "object",
+  "properties": {
+    "brand": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "const": "Ownly" },
+        "slogan": { "type": "string", "const": "Upload once, own everything." },
+        "positioning": { "type": "string", "description": "toC + small-B light customization platform" },
+        "differentiation": { "type": "string", "description": "One logo → full brand kit, auto-generated" }
+      }
+    },
+    "colors": {
+      "type": "object",
+      "properties": {
+        "primary": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$", "default": "#1A1A2E", "description": "Deep navy" },
+        "accent": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$", "default": "#FF6B35", "description": "Vibrant orange" },
+        "ai_purple": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$", "default": "#8B5CF6", "description": "AI Studio accent" },
+        "background": { "type": "string", "default": "#FFFFFF" },
+        "text": { "type": "string", "default": "#1A1A2E" },
+        "text_light": { "type": "string", "default": "#6B7280" }
+      }
+    },
+    "product_lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "phase": { "type": "string", "enum": ["phase_1", "phase_2", "phase_3"] },
+          "price_range": {
+            "type": "object",
+            "properties": {
+              "min": { "type": "number" },
+              "max": { "type": "number" },
+              "currency": { "type": "string", "default": "USD" }
+            }
+          },
+          "moq": { "type": "integer", "minimum": 1, "description": "Minimum order quantity" },
+          "delivery_days": {
+            "type": "object",
+            "properties": {
+              "min": { "type": "integer" },
+              "max": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+    "payment": {
+      "type": "object",
+      "properties": {
+        "primary_method": { "type": "string", "enum": ["paypal", "stripe", "tt"] },
+        "deposit_rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "amount_range": { "type": "string" },
+              "deposit_percent": { "type": "number" },
+              "method": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "logistics": {
+      "type": "object",
+      "properties": {
+        "phase_1_warehouse": { "type": "string", "enum": ["china", "overseas", "hybrid"] },
+        "suppliers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "POD supplier names (e.g., CJ Dropshipping, EPROLO)"
+        },
+        "delivery_range_days": {
+          "type": "object",
+          "properties": {
+            "min": { "type": "integer" },
+            "max": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "global_constants": {
+      "type": "object",
+      "properties": {
+        "exchange_rate_usd_cny": { "type": "number", "default": 7.2 },
+        "ebay_commission_rate": { "type": "number", "default": 0.22 },
+        "startup_budget_max_cny": { "type": "number", "default": 20000 },
+        "target_markets": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["US", "EU", "AU"] }
+        }
+      }
+    }
+  }
+}
