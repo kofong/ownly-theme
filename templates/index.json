@@ -1,0 +1,122 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "heading": "Upload once, own everything.",
+        "subheading": "One logo → full brand kit. T-shirts, mugs, phone cases & more — auto-generated, zero design skills needed.",
+        "button_text": "Start Creating",
+        "button_link": "/collections/all",
+        "secondary_button_text": "See How It Works",
+        "secondary_button_link": "#how-it-works",
+        "color_scheme": "primary"
+      }
+    },
+    "features": {
+      "type": "features-grid",
+      "settings": {
+        "heading": "Why Ownly?",
+        "subheading": "The world's first one-logo-to-everything platform"
+      },
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "upload",
+            "title": "Upload Your Logo",
+            "text": "Drop any image — we handle the rest. No design tools, no templates, no hassle."
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "magic",
+            "title": "AI Auto-Adapts",
+            "text": "Our AI instantly adapts your design to fit every product perfectly. One upload, infinite possibilities."
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "package",
+            "title": "Full Kit Delivery",
+            "text": "Order individual items or complete kits. Campaign swag, wedding favors, brand merch — all in one click."
+          }
+        }
+      },
+      "block_order": ["feature_1", "feature_2", "feature_3"]
+    },
+    "products": {
+      "type": "featured-products",
+      "settings": {
+        "heading": "Start Customizing",
+        "subheading": "Phase 1 products — ready to ship worldwide",
+        "collection": "all"
+      }
+    },
+    "kits": {
+      "type": "kit-showcase",
+      "settings": {
+        "heading": "Full-Case Kits",
+        "subheading": "One design → complete branded sets. Save 15-20% vs buying individually."
+      },
+      "blocks": {
+        "kit_campaign": {
+          "type": "kit",
+          "settings": {
+            "title": "Campaign Kit",
+            "description": "Banners + T-shirts + Caps + Stickers — everything for your campaign trail.",
+            "price": "$199",
+            "items": "Banner, T-shirt ×10, Cap ×10, Sticker ×50",
+            "color_scheme": "accent"
+          }
+        },
+        "kit_brand": {
+          "type": "kit",
+          "settings": {
+            "title": "Brand Kit",
+            "description": "Business cards + T-shirts + Mugs + Stickers — your brand, unified.",
+            "price": "$149",
+            "items": "Business Card ×100, T-shirt ×5, Mug ×5, Sticker ×30",
+            "color_scheme": "primary"
+          }
+        },
+        "kit_wedding": {
+          "type": "kit",
+          "settings": {
+            "title": "Wedding Kit",
+            "description": "Invitations + Favors + T-shirts + Banners — your special day, perfectly branded.",
+            "price": "$249",
+            "items": "Invitation ×50, Favor ×30, T-shirt ×10, Banner ×2",
+            "color_scheme": "ai-purple"
+          }
+        }
+      },
+      "block_order": ["kit_campaign", "kit_brand", "kit_wedding"]
+    },
+    "how_it_works": {
+      "type": "how-it-works",
+      "settings": {
+        "heading": "How It Works",
+        "subheading": "From upload to delivery in 4 simple steps"
+      }
+    },
+    "cta": {
+      "type": "cta-banner",
+      "settings": {
+        "heading": "Ready to Own Your Brand?",
+        "subheading": "Join hundreds of creators, small businesses, and event organizers who trust Ownly.",
+        "button_text": "Get Started Free",
+        "button_link": "/collections/all"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "features",
+    "products",
+    "kits",
+    "how_it_works",
+    "cta"
+  ]
+}
