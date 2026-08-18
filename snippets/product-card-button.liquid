@@ -1,0 +1,12 @@
+{%- if product.available -%}
+  {%- if product.options_with_values.size > 0 -%}
+    <a href="{{ product.url }}" class="product-card__btn">Customize Now</a>
+  {%- else -%}
+    <form method="post" action="/cart/add">
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+      <button type="submit" class="product-card__btn">Add to Cart</button>
+    </form>
+  {%- endif -%}
+{%- else -%}
+  <span class="product-card__btn" style="opacity:0.5;cursor:not-allowed;">Sold Out</span>
+{%- endif -%}
