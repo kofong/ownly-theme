@@ -1,0 +1,160 @@
+{%- style -%}
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #E5E7EB;
+    padding: 0 1.5rem;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .site-header.scrolled {
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 70px;
+  }
+
+  .site-header__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+
+  .site-header__logo img {
+    height: auto;
+  }
+
+  .site-header__logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: {{ settings.color_primary }};
+    letter-spacing: -0.02em;
+  }
+
+  .site-header__logo-text span {
+    color: {{ settings.color_accent }};
+  }
+
+  .site-header__nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .site-header__link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: {{ settings.color_text }};
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .site-header__link:hover {
+    color: {{ settings.color_accent }};
+  }
+
+  .site-header__link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: {{ settings.color_accent }};
+    transition: width 0.2s;
+  }
+
+  .site-header__link:hover::after {
+    width: 100%;
+  }
+
+  .site-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .site-header__cart {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: {{ settings.color_primary }};
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .site-header__cart:hover {
+    color: {{ settings.color_accent }};
+  }
+
+  .site-header__menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: {{ settings.color_primary }};
+  }
+
+  @media (max-width: 749px) {
+    .site-header__nav { display: none; }
+    .site-header__menu-btn { display: block; }
+    .site-header__inner { height: 60px; }
+  }
+{%- endstyle -%}
+
+<header class="site-header" id="site-header">
+  <div class="site-header__inner">
+    <a href="/" class="site-header__logo">
+      {%- if settings.logo != blank -%}
+        <img
+          src="{{ settings.logo | image_url: width: settings.logo_width }}"
+          alt="{{ shop.name }}"
+          width="{{ settings.logo_width }}"
+          height="auto"
+        >
+      {%- else -%}
+        <span class="site-header__logo-text">Own<span>ly</span></span>
+      {%- endif -%}
+    </a>
+
+    <nav class="site-header__nav">
+      <a href="/collections/all" class="site-header__link">Products</a>
+      <a href="/collections/kits" class="site-header__link">Kits</a>
+      <a href="/pages/about" class="site-header__link">About</a>
+      <a href="/pages/faq" class="site-header__link">FAQ</a>
+    </nav>
+
+    <div class="site-header__actions">
+      <a href="/cart" class="site-header__cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+        Cart (<span id="cart-count">{{ cart.item_count }}</span>)
+      </a>
+
+      <button class="site-header__menu-btn" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "header-section",
+  "settings": []
+}
+{% endschema %}
