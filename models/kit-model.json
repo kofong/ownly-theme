@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ownly Kit Model",
+  "description": "Full-case Kit product model. A Kit bundles multiple single products under a unified design with a discount.",
+  "type": "object",
+  "properties": {
+    "kit": {
+      "type": "object",
+      "required": ["name", "type", "items", "price"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "enum": ["Campaign Kit", "Brand Kit", "Wedding Kit", "Event Kit", "Fan Support Kit"],
+          "description": "Kit type name"
+        },
+        "type": {
+          "type": "string",
+          "const": "Full-Case Kit",
+          "description": "Product type identifier"
+        },
+        "description": {
+          "type": "string",
+          "description": "Kit description for product page"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["product_handle", "quantity"],
+            "properties": {
+              "product_handle": {
+                "type": "string",
+                "description": "Shopify product handle for the included item"
+              },
+              "quantity": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Number of this item in the kit"
+              },
+              "customization": {
+                "type": "string",
+                "description": "Customization notes for this item"
+              }
+            }
+          },
+          "description": "List of products included in the kit"
+        },
+        "pricing": {
+          "type": "object",
+          "properties": {
+            "kit_price": {
+              "type": "number",
+              "description": "Kit bundle price in USD"
+            },
+            "individual_total": {
+              "type": "number",
+              "description": "Sum of individual item prices"
+            },
+            "discount_percent": {
+              "type": "number",
+              "description": "Discount percentage vs buying individually",
+              "minimum": 10,
+              "maximum": 25
+            },
+            "currency": {
+              "type": "string",
+              "const": "USD"
+            }
+          }
+        },
+        "scenarios": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["campaign", "concert", "wedding", "corporate", "event"]
+          },
+          "description": "Target use-case scenarios"
+        },
+        "deposit_rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "order_range": { "type": "string", "description": "e.g., '$500-$2,500'" },
+              "deposit_percent": { "type": "number", "description": "Deposit percentage" },
+              "payment_method": { "type": "string", "enum": ["full_prepay", "downpay_app", "draft_order", "manual"] }
+            }
+          },
+          "description": "Payment/deposit rules based on order amount"
+        }
+      }
+    }
+  }
+}
