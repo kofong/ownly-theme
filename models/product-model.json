@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ownly Product Model",
+  "description": "Shopify product data model for Ownly custom products. Defines the structure for single items and full-case kits.",
+  "type": "object",
+  "properties": {
+    "product": {
+      "type": "object",
+      "description": "Shopify Product resource",
+      "properties": {
+        "id": { "type": "integer", "description": "Unique product ID" },
+        "title": { "type": "string", "description": "Product title" },
+        "body_html": { "type": "string", "description": "Product description (HTML)" },
+        "vendor": { "type": "string", "default": "Ownly", "description": "Brand/vendor name" },
+        "product_type": {
+          "type": "string",
+          "enum": ["Single Custom", "Full-Case Kit", "AI Studio"],
+          "description": "Product line category"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Product tags for filtering and collections"
+        },
+        "variants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "integer" },
+              "title": { "type": "string", "description": "Variant title (e.g., 'Size: M / Color: Black')" },
+              "price": { "type": "string", "description": "Price in shop currency" },
+              "sku": { "type": "string", "description": "Stock keeping unit" },
+              "inventory_quantity": { "type": "integer" },
+              "inventory_policy": {
+                "type": "string",
+                "enum": ["deny", "continue"],
+                "description": "Whether to allow orders when out of stock"
+              },
+              "requires_shipping": { "type": "boolean", "default": true },
+              "weight": { "type": "number", "description": "Weight in grams" },
+              "options": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Option values (e.g., ['M', 'Black'])"
+              }
+            }
+          }
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string", "description": "Option name (e.g., 'Size', 'Color')" },
+              "values": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Available values for this option"
+              }
+            }
+          },
+          "description": "Product options for customization"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "src": { "type": "string", "format": "uri" },
+              "alt": { "type": "string" },
+              "position": { "type": "integer" }
+            }
+          }
+        },
+        "metafields": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "namespace": { "type": "string" },
+              "key": { "type": "string" },
+              "value": { "type": "string" },
+              "type": { "type": "string" }
+            }
+          },
+          "description": "Custom product metadata"
+        }
+      }
+    }
+  }
+}
