@@ -1,43 +1,48 @@
-{%- style -%}
+{% stylesheet %}
   .kit-showcase {
-    padding: 6rem 1.5rem;
-    background: {{ settings.color_background }};
+    padding-block: var(--space-3xl, 6rem);
+    padding-inline: 1.5rem;
+    background: var(--color-bg, #FFFFFF);
   }
 
   .kit-showcase__header {
     text-align: center;
-    max-width: 600px;
-    margin: 0 auto 4rem;
+    max-inline-size: 600px;
+    margin: 0 auto var(--space-2xl, 4rem);
   }
 
   .kit-showcase__heading {
     font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 700;
-    color: {{ settings.color_primary }};
-    margin: 0 0 1rem;
+    color: var(--color-primary, #1A1A2E);
+    margin: 0 0 var(--space-sm, 1rem);
   }
 
   .kit-showcase__subheading {
     font-size: 1.1rem;
-    color: {{ settings.color_text_light }};
+    color: var(--color-text-light, #6B7280);
     margin: 0;
     line-height: 1.6;
+    overflow-wrap: break-word;
   }
 
   .kit-showcase__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    max-width: 1100px;
+    max-inline-size: 1100px;
     margin: 0 auto;
   }
 
   .kit-card {
-    border-radius: 20px;
+    border-radius: var(--radius-lg, 20px);
     padding: 2.5rem 2rem;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
+    min-width: 0;
+    overflow-wrap: break-word;
+    isolation: isolate;
   }
 
   .kit-card:hover {
@@ -45,17 +50,17 @@
   }
 
   .kit-card--accent {
-    background: linear-gradient(135deg, {{ settings.color_accent }}, color-mix(in srgb, {{ settings.color_accent }} 80%, #000));
+    background: linear-gradient(135deg, var(--color-accent, #FF6B35), color-mix(in srgb, var(--color-accent, #FF6B35) 80%, #000));
     color: #fff;
   }
 
   .kit-card--primary {
-    background: linear-gradient(135deg, {{ settings.color_primary }}, color-mix(in srgb, {{ settings.color_primary }} 80%, #000));
+    background: linear-gradient(135deg, var(--color-primary, #1A1A2E), color-mix(in srgb, var(--color-primary, #1A1A2E) 80%, #000));
     color: #fff;
   }
 
   .kit-card--ai-purple {
-    background: linear-gradient(135deg, {{ settings.color_ai_purple }}, color-mix(in srgb, {{ settings.color_ai_purple }} 80%, #000));
+    background: linear-gradient(135deg, var(--color-ai-purple, #8B5CF6), color-mix(in srgb, var(--color-ai-purple, #8B5CF6) 80%, #000));
     color: #fff;
   }
 
@@ -68,7 +73,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 1.5rem;
+    margin-block-end: 1.5rem;
   }
 
   .kit-card__title {
@@ -90,7 +95,8 @@
     margin: 0 0 1.5rem;
     padding: 1rem;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border-radius: var(--radius-sm, 8px);
+    overflow-wrap: break-word;
   }
 
   .kit-card__price {
@@ -107,26 +113,47 @@
   }
 
   .kit-card__btn {
-    display: inline-block;
-    padding: 0.8rem 1.8rem;
-    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    padding-block: 0.8rem;
+    padding-inline: 1.8rem;
+    border-radius: var(--radius-sm, 8px);
     background: rgba(255, 255, 255, 0.2);
     color: #fff;
     font-weight: 600;
     text-decoration: none;
     border: 1.5px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.2s;
+    transition: background 0.2s ease;
   }
 
   .kit-card__btn:hover {
     background: rgba(255, 255, 255, 0.3);
   }
 
-  @media (max-width: 749px) {
-    .kit-showcase { padding: 4rem 1rem; }
-    .kit-showcase__grid { grid-template-columns: 1fr; }
+  .kit-card__btn:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 3px;
   }
-{%- endstyle -%}
+
+  @media screen and (max-width: 749px) {
+    .kit-showcase {
+      padding-block: var(--space-2xl, 4rem);
+      padding-inline: 1rem;
+    }
+
+    .kit-showcase__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kit-card,
+    .kit-card:hover {
+      transform: none;
+      transition: none;
+    }
+  }
+{% endstylesheet %}
 
 <section class="kit-showcase" id="kits-{{ section.id }}">
   <div class="kit-showcase__header">
@@ -137,17 +164,19 @@
   <div class="kit-showcase__grid">
     {%- for block in section.blocks -%}
       <div class="kit-card kit-card--{{ block.settings.color_scheme }}" {{ block.shopify_attributes }}>
-        <span class="kit-card__badge">Kit</span>
+        <span class="kit-card__badge">{{ 'sections.kit_showcase.badge' | t }}</span>
         <h3 class="kit-card__title">{{ block.settings.title }}</h3>
         <p class="kit-card__description">{{ block.settings.description }}</p>
         <div class="kit-card__items">
-          <strong>Includes:</strong> {{ block.settings.items }}
+          <strong>{{ 'sections.kit_showcase.includes' | t }}</strong> {{ block.settings.items }}
         </div>
         <p class="kit-card__price">
           {{ block.settings.price }}
-          <small>Save 15-20% vs buying individually</small>
+          <small>{{ 'sections.kit_showcase.save_vs_individual' | t }}</small>
         </p>
-        <a href="/collections/all" class="kit-card__btn">Order Kit</a>
+        <a href="{{ block.settings.button_link | default: '/collections/all' }}" class="kit-card__btn">
+          {{ 'sections.kit_showcase.order_kit' | t }}
+        </a>
       </div>
     {%- endfor -%}
   </div>
@@ -155,59 +184,69 @@
 
 {% schema %}
 {
-  "name": "Kit Showcase",
+  "name": "t:sections.kit_showcase.name",
   "tag": "section",
+  "class": "section-kit-showcase",
   "settings": [
     {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Full-Case Kits"
+      "type": "header",
+      "content": "t:sections.kit_showcase.settings.header_content"
     },
     {
       "type": "text",
+      "id": "heading",
+      "label": "t:sections.kit_showcase.settings.heading",
+      "default": "Full-Case Kits"
+    },
+    {
+      "type": "textarea",
       "id": "subheading",
-      "label": "Subheading",
+      "label": "t:sections.kit_showcase.settings.subheading",
       "default": "One design → complete branded sets. Save 15-20% vs buying individually."
     }
   ],
   "blocks": [
     {
       "type": "kit",
-      "name": "Kit",
+      "name": "t:sections.kit_showcase.blocks.kit.name",
       "settings": [
         {
           "type": "text",
           "id": "title",
-          "label": "Kit Title",
+          "label": "t:sections.kit_showcase.blocks.kit.settings.title",
           "default": "Kit Name"
         },
         {
           "type": "textarea",
           "id": "description",
-          "label": "Description",
+          "label": "t:sections.kit_showcase.blocks.kit.settings.description",
           "default": "Kit description."
         },
         {
           "type": "text",
           "id": "items",
-          "label": "Kit Items",
+          "label": "t:sections.kit_showcase.blocks.kit.settings.items",
           "default": "Item 1, Item 2, Item 3"
         },
         {
           "type": "text",
           "id": "price",
-          "label": "Price",
+          "label": "t:sections.kit_showcase.blocks.kit.settings.price",
           "default": "$199"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.kit_showcase.blocks.kit.settings.button_link"
         },
         {
           "type": "select",
           "id": "color_scheme",
-          "label": "Color Scheme",
+          "label": "t:sections.kit_showcase.blocks.kit.settings.color_scheme",
           "options": [
-            { "value": "accent", "label": "Orange" },
-            { "value": "primary", "label": "Navy" },
-            { "value": "ai-purple", "label": "AI Purple" }
+            { "value": "accent", "label": "t:sections.kit_showcase.blocks.kit.settings.color_scheme_accent" },
+            { "value": "primary", "label": "t:sections.kit_showcase.blocks.kit.settings.color_scheme_primary" },
+            { "value": "ai-purple", "label": "t:sections.kit_showcase.blocks.kit.settings.color_scheme_ai_purple" }
           ],
           "default": "accent"
         }
@@ -216,7 +255,7 @@
   ],
   "presets": [
     {
-      "name": "Kit Showcase",
+      "name": "t:sections.kit_showcase.name",
       "blocks": [
         { "type": "kit", "settings": { "title": "Campaign Kit", "description": "Everything for your campaign.", "items": "Banner, T-shirt ×10, Cap ×10", "price": "$199", "color_scheme": "accent" } },
         { "type": "kit", "settings": { "title": "Brand Kit", "description": "Your brand, unified.", "items": "Business Card ×100, T-shirt ×5, Mug ×5", "price": "$149", "color_scheme": "primary" } },
