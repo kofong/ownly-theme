@@ -1,0 +1,64 @@
+{% stylesheet %}
+  .page-content {
+    padding-block: var(--space-2xl, 4rem);
+    padding-inline: 1.5rem;
+  }
+
+  .page-content__inner {
+    max-inline-size: 800px;
+    margin-inline: auto;
+    min-inline-size: 0;
+    overflow-wrap: break-word;
+  }
+
+  .page-content__title {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--color-primary, #1A1A2E);
+    margin: 0 0 var(--space-xl, 3rem);
+  }
+
+  .page-content__body {
+    color: var(--color-text, #1A1A2E);
+    line-height: 1.7;
+  }
+
+  .page-content__body img {
+    max-inline-size: 100%;
+    block-size: auto;
+    border-radius: var(--radius-md, 12px);
+    margin-block: var(--space-md, 1.5rem);
+  }
+
+  .page-content__body h2 {
+    font-size: 1.5rem;
+    margin-block: var(--space-xl, 3rem) var(--space-sm, 1rem);
+  }
+
+  .page-content__body p {
+    margin-block-end: var(--space-sm, 1rem);
+  }
+{% endstylesheet %}
+
+<section class="page-content" id="PageContent-{{ section.id }}">
+  <div class="page-content__inner">
+    <h1 class="page-content__title">{{ page.title }}</h1>
+    <div class="page-content__body">
+      {{ page.content }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main_page.name",
+  "tag": "section",
+  "class": "section-main-page",
+  "settings": [],
+  "presets": [
+    {
+      "name": "t:sections.main_page.name"
+    }
+  ]
+}
+{% endschema %}
