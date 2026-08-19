@@ -85,16 +85,16 @@
       "returns": "Returns",
       "privacy": "Privacy",
       "terms": "Terms",
-      "all_rights_reserved": "All rights reserved.",
-      "404": {
-        "heading": "Page not found",
-        "text": "The page you were looking for does not exist. Maybe you want to try the search instead?",
-        "search_placeholder": "Search...",
-        "search_label": "Search the store",
-        "search_button": "Search",
-        "back_home": "Back to Ownly",
-        "back_previous": "previous page"
-      }
+      "all_rights_reserved": "All rights reserved."
+    },
+    "404": {
+      "heading": "Page not found",
+      "text": "The page you were looking for does not exist. Maybe you want to try the search instead?",
+      "search_placeholder": "Search...",
+      "search_label": "Search the store",
+      "search_button": "Search",
+      "back_home": "Back to Ownly",
+      "back_previous": "previous page"
     }
   },
   "collections": {
