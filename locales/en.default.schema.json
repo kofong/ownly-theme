@@ -1,0 +1,197 @@
+{
+  "sections": {
+    "hero_banner": {
+      "name": "Hero Banner",
+      "settings": {
+        "header_content": "Content",
+        "heading": "Heading",
+        "subheading": "Subheading",
+        "header_buttons": "Buttons",
+        "button_text": "Primary button text",
+        "button_link": "Primary button link",
+        "secondary_button_text": "Secondary button text",
+        "secondary_button_link": "Secondary button link",
+        "header_style": "Style",
+        "color_scheme": "Color scheme",
+        "color_scheme_primary": "Primary (Navy)",
+        "color_scheme_accent": "Accent (Orange)"
+      }
+    },
+    "features_grid": {
+      "name": "Features Grid",
+      "settings": {
+        "header_content": "Content",
+        "heading": "Heading",
+        "subheading": "Subheading"
+      },
+      "blocks": {
+        "feature": {
+          "name": "Feature",
+          "settings": {
+            "icon": "Icon",
+            "icon_upload": "Upload",
+            "icon_magic": "AI Magic",
+            "icon_package": "Package",
+            "title": "Title",
+            "text": "Description"
+          }
+        }
+      }
+    },
+    "featured_products": {
+      "name": "Featured Products",
+      "settings": {
+        "header_content": "Content",
+        "heading": "Heading",
+        "subheading": "Subheading",
+        "header_collection": "Collection",
+        "collection": "Collection",
+        "products_to_show": "Products to show"
+      }
+    },
+    "kit_showcase": {
+      "name": "Kit Showcase",
+      "settings": {
+        "header_content": "Content",
+        "heading": "Heading",
+        "subheading": "Subheading"
+      },
+      "blocks": {
+        "kit": {
+          "name": "Kit",
+          "settings": {
+            "title": "Kit title",
+            "description": "Description",
+            "items": "Kit items",
+            "price": "Price",
+            "button_link": "Kit button link",
+            "color_scheme": "Color scheme",
+            "color_scheme_accent": "Orange",
+            "color_scheme_primary": "Navy",
+            "color_scheme_ai_purple": "AI Purple"
+          }
+        }
+      }
+    },
+    "how_it_works": {
+      "name": "How It Works",
+      "settings": {
+        "header_content": "Content",
+        "heading": "Heading",
+        "subheading": "Subheading"
+      },
+      "blocks": {
+        "step": {
+          "name": "Step",
+          "settings": {
+            "title": "Step title",
+            "text": "Step description"
+          }
+        }
+      }
+    },
+    "cta_banner": {
+      "name": "CTA Banner",
+      "settings": {
+        "header_content": "Content",
+        "heading": "Heading",
+        "subheading": "Subheading",
+        "header_button": "Button",
+        "button_text": "Button text",
+        "button_link": "Button link"
+      }
+    },
+    "header": {
+      "name": "Header"
+    },
+    "footer": {
+      "name": "Footer"
+    },
+    "main_404": {
+      "name": "404 Page"
+    },
+    "main_product": {
+      "name": "Product Page"
+    },
+    "main_collection": {
+      "name": "Collection Page"
+    },
+    "main_cart": {
+      "name": "Cart Page"
+    },
+    "main_page": {
+      "name": "Page Content"
+    },
+    "main_blog": {
+      "name": "Blog Page"
+    }
+  },
+  "settings": {
+    "theme_info": {
+      "name": "Ownly",
+      "theme_name": "Ownly",
+      "theme_version": "1.0.0",
+      "theme_author": "Ownly Team",
+      "theme_documentation_url": "Documentation URL",
+      "theme_support_email": "Support email"
+    },
+    "colors": {
+      "name": "Colors",
+      "settings": {
+        "header_brand_colors": "Brand Colors",
+        "color_primary": {
+          "label": "Primary Color",
+          "info": "Deep navy — professional, trustworthy"
+        },
+        "color_accent": {
+          "label": "Accent Color",
+          "info": "Vibrant orange — creativity, action"
+        },
+        "color_ai_purple": {
+          "label": "AI Purple",
+          "info": "AI Studio accent color"
+        },
+        "color_background": {
+          "label": "Background Color"
+        },
+        "color_text": {
+          "label": "Text Color"
+        },
+        "color_text_light": {
+          "label": "Light Text Color"
+        }
+      }
+    },
+    "typography": {
+      "name": "Typography",
+      "settings": {
+        "font_heading": "Heading Font",
+        "font_body": "Body Font"
+      }
+    },
+    "logo": {
+      "name": "Logo",
+      "settings": {
+        "logo": "Logo Image",
+        "logo_width": "Logo Width",
+        "logo_text": "Logo Text (if no image)"
+      }
+    },
+    "social_media": {
+      "name": "Social Media",
+      "settings": {
+        "social_twitter": "Twitter/X URL",
+        "social_instagram": "Instagram URL",
+        "social_facebook": "Facebook URL",
+        "social_tiktok": "TikTok URL"
+      }
+    },
+    "footer": {
+      "name": "Footer",
+      "settings": {
+        "footer_tagline": "Footer Tagline",
+        "footer_contact_email": "Contact Email"
+      }
+    }
+  }
+}
