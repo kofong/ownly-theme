@@ -1,0 +1,206 @@
+{% stylesheet %}
+  .collection-page {
+    padding-block: var(--space-2xl, 4rem);
+    padding-inline: 1.5rem;
+  }
+
+  .collection-page__header {
+    text-align: center;
+    max-inline-size: 600px;
+    margin: 0 auto var(--space-2xl, 4rem);
+    min-inline-size: 0;
+    overflow-wrap: break-word;
+  }
+
+  .collection-page__title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--color-primary, #1A1A2E);
+    margin: 0 0 var(--space-sm, 1rem);
+  }
+
+  .collection-page__description {
+    color: var(--color-text-light, #6B7280);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .collection-page__count {
+    font-size: 0.9rem;
+    color: var(--color-text-light, #6B7280);
+    margin-block-end: var(--space-lg, 2rem);
+    text-align: center;
+  }
+
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--space-lg, 2rem);
+    max-inline-size: 1200px;
+    margin-inline: auto;
+  }
+
+  .collection-card {
+    background: #fff;
+    border-radius: var(--radius-md, 12px);
+    overflow: hidden;
+    border: 1px solid var(--color-border, #E5E7EB);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-inline-size: 0;
+    isolation: isolate;
+  }
+
+  .collection-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md, 0 8px 30px rgba(0,0,0,0.08));
+  }
+
+  .collection-card__image {
+    aspect-ratio: 1;
+    background: var(--color-bg-alt, #F9FAFB);
+    overflow: hidden;
+  }
+
+  .collection-card__image img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .collection-card:hover .collection-card__image img {
+    transform: scale(1.05);
+  }
+
+  .collection-card__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    block-size: 100%;
+    color: var(--color-text-light, #6B7280);
+    font-size: 0.9rem;
+  }
+
+  .collection-card__info {
+    padding: var(--space-sm, 1rem);
+  }
+
+  .collection-card__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-primary, #1A1A2E);
+    margin: 0 0 0.5rem;
+    overflow-wrap: break-word;
+  }
+
+  .collection-card__price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-accent, #FF6B35);
+    margin: 0 0 var(--space-sm, 1rem);
+  }
+
+  .collection-card__btn {
+    display: block;
+    inline-size: 100%;
+    padding: 0.65rem;
+    border: none;
+    border-radius: var(--radius-sm, 8px);
+    background: var(--color-primary, #1A1A2E);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    text-align: center;
+  }
+
+  .collection-card__btn:hover {
+    background: var(--color-accent, #FF6B35);
+  }
+
+  .collection-empty {
+    text-align: center;
+    padding: var(--space-3xl, 6rem) 1.5rem;
+    color: var(--color-text-light, #6B7280);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .collection-card, .collection-card:hover { transform: none; transition: none; }
+    .collection-card__image img { transition: none; }
+  }
+{% endstylesheet %}
+
+<section class="collection-page">
+  {%- if collection.description != blank -%}
+    <div class="collection-page__header">
+      <h1 class="collection-page__title">{{ collection.title }}</h1>
+      <div class="collection-page__description">{{ collection.description }}</div>
+    </div>
+  {%- else -%}
+    <h1 class="collection-page__title" style="text-align: center; margin-bottom: var(--space-2xl, 4rem);">
+      {{ collection.title }}
+    </h1>
+  {%- endif -%}
+
+  <p class="collection-page__count">
+    {{ 'collections.general.product_count' | t: count: collection.products_count }}
+  </p>
+
+  {%- if collection.products.size > 0 -%}
+    <div class="collection-grid">
+      {%- for product in collection.products -%}
+        <div class="collection-card">
+          <div class="collection-card__image">
+            {%- if product.featured_image != blank -%}
+              {{ product.featured_image | image_url: width: 400 | image_tag:
+                loading: 'lazy',
+                alt: product.featured_image.alt | default: product.title | escape,
+                width: product.featured_image.width,
+                height: product.featured_image.height
+              }}
+            {%- else -%}
+              <span class="collection-card__placeholder">{{ product.title }}</span>
+            {%- endif -%}
+          </div>
+          <div class="collection-card__info">
+            <h3 class="collection-card__title">
+              <a href="{{ product.url }}">{{ product.title }}</a>
+            </h3>
+            <p class="collection-card__price">{{ product.price | money }}</p>
+            {% render 'product-card-button', product: product %}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      <nav class="pagination" aria-label="{{ 'collections.general.pagination' | t }}">
+        {%- if paginate.previous -%}
+          <a href="{{ paginate.previous.url }}" class="pagination__link">&laquo;</a>
+        {%- endif -%}
+        {%- if paginate.next -%}
+          <a href="{{ paginate.next.url }}" class="pagination__link">&raquo;</a>
+        {%- endif -%}
+      </nav>
+    {%- endif -%}
+  {%- else -%}
+    <div class="collection-empty">
+      <p>{{ 'collections.general.no_matches' | t }}</p>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main_collection.name",
+  "tag": "section",
+  "class": "section-main-collection",
+  "settings": [],
+  "presets": [
+    {
+      "name": "t:sections.main_collection.name"
+    }
+  ]
+}
+{% endschema %}
