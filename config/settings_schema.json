@@ -1,89 +1,89 @@
 [
   {
-    "name": "theme_info",
-    "theme_name": "Ownly",
-    "theme_version": "1.0.0",
-    "theme_author": "Ownly Team",
-    "theme_documentation_url": "https://github.com/ownly/ownly-theme",
+    "name": "t:settings.theme_info.name",
+    "theme_name": "t:settings.theme_info.theme_name",
+    "theme_version": "t:settings.theme_info.theme_version",
+    "theme_author": "t:settings.theme_info.theme_author",
+    "theme_documentation_url": "https://github.com/kofong/ownly-theme",
     "theme_support_email": "support@ownly.com"
   },
   {
-    "name": "Colors",
+    "name": "t:settings.colors.name",
     "settings": [
       {
         "type": "header",
-        "content": "Brand Colors"
+        "content": "t:settings.colors.settings.header_brand_colors"
       },
       {
         "type": "color",
         "id": "color_primary",
-        "label": "Primary Color",
+        "label": "t:settings.colors.settings.color_primary.label",
         "default": "#1A1A2E",
-        "info": "Deep navy — professional, trustworthy"
+        "info": "t:settings.colors.settings.color_primary.info"
       },
       {
         "type": "color",
         "id": "color_accent",
-        "label": "Accent Color",
+        "label": "t:settings.colors.settings.color_accent.label",
         "default": "#FF6B35",
-        "info": "Vibrant orange — creativity, action"
+        "info": "t:settings.colors.settings.color_accent.info"
       },
       {
         "type": "color",
         "id": "color_ai_purple",
-        "label": "AI Purple",
+        "label": "t:settings.colors.settings.color_ai_purple.label",
         "default": "#8B5CF6",
-        "info": "AI Studio accent color"
+        "info": "t:settings.colors.settings.color_ai_purple.info"
       },
       {
         "type": "color",
         "id": "color_background",
-        "label": "Background Color",
+        "label": "t:settings.colors.settings.color_background.label",
         "default": "#FFFFFF"
       },
       {
         "type": "color",
         "id": "color_text",
-        "label": "Text Color",
+        "label": "t:settings.colors.settings.color_text.label",
         "default": "#1A1A2E"
       },
       {
         "type": "color",
         "id": "color_text_light",
-        "label": "Light Text Color",
+        "label": "t:settings.colors.settings.color_text_light.label",
         "default": "#6B7280"
       }
     ]
   },
   {
-    "name": "Typography",
+    "name": "t:settings.typography.name",
     "settings": [
       {
         "type": "font_picker",
         "id": "font_heading",
-        "label": "Heading Font",
+        "label": "t:settings.typography.settings.font_heading",
         "default": "assistant_n4"
       },
       {
         "type": "font_picker",
         "id": "font_body",
-        "label": "Body Font",
+        "label": "t:settings.typography.settings.font_body",
         "default": "assistant_n4"
       }
     ]
   },
   {
-    "name": "Logo",
+    "name": "t:settings.logo.name",
     "settings": [
       {
         "type": "image_picker",
         "id": "logo",
-        "label": "Logo Image"
+        "label": "t:settings.logo.settings.logo"
       },
       {
         "type": "range",
         "id": "logo_width",
-        "label": "Logo Width",
+        "label": "t:settings.logo.settings.logo_width",
         "min": 50,
         "max": 250,
         "step": 10,
@@ -93,49 +93,49 @@
       {
         "type": "text",
         "id": "logo_text",
-        "label": "Logo Text (if no image)",
+        "label": "t:settings.logo.settings.logo_text",
         "default": "Ownly"
       }
     ]
   },
   {
-    "name": "Social Media",
+    "name": "t:settings.social_media.name",
     "settings": [
       {
         "type": "text",
         "id": "social_twitter",
-        "label": "Twitter/X URL"
+        "label": "t:settings.social_media.settings.social_twitter"
       },
       {
         "type": "text",
         "id": "social_instagram",
-        "label": "Instagram URL"
+        "label": "t:settings.social_media.settings.social_instagram"
       },
       {
         "type": "text",
         "id": "social_facebook",
-        "label": "Facebook URL"
+        "label": "t:settings.social_media.settings.social_facebook"
       },
       {
         "type": "text",
         "id": "social_tiktok",
-        "label": "TikTok URL"
+        "label": "t:settings.social_media.settings.social_tiktok"
       }
     ]
   },
   {
-    "name": "Footer",
+    "name": "t:settings.footer.name",
     "settings": [
       {
         "type": "textarea",
         "id": "footer_tagline",
-        "label": "Footer Tagline",
+        "label": "t:settings.footer.settings.footer_tagline",
         "default": "Upload once, own everything."
       },
       {
         "type": "text",
         "id": "footer_contact_email",
-        "label": "Contact Email",
+        "label": "t:settings.footer.settings.footer_contact_email",
         "default": "hello@ownly.com"
       }
     ]
