@@ -1,5 +1,10 @@
 {
   "type": "header",
-  "name": "Header",
-  "sections": ["header"]
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {}
+    }
+  },
+  "order": ["header"]
 }
