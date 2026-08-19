@@ -1,0 +1,130 @@
+{% stylesheet %}
+  .error-404 {
+    padding-block: var(--space-3xl, 6rem);
+    padding-inline: 1.5rem;
+    text-align: center;
+  }
+
+  .error-404__inner {
+    max-inline-size: 600px;
+    margin-inline: auto;
+    min-inline-size: 0;
+    overflow-wrap: break-word;
+  }
+
+  .error-404__heading {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: var(--color-primary, #1A1A2E);
+    margin: 0 0 var(--space-sm, 1rem);
+  }
+
+  .error-404__text {
+    font-size: 1.1rem;
+    color: var(--color-text-light, #6B7280);
+    line-height: 1.6;
+    margin: 0 0 var(--space-xl, 3rem);
+  }
+
+  .error-404__search {
+    display: flex;
+    gap: 0.5rem;
+    max-inline-size: 400px;
+    margin: 0 auto var(--space-xl, 3rem);
+  }
+
+  .error-404__search-input {
+    flex: 1;
+    min-inline-size: 0;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border, #E5E7EB);
+    border-radius: var(--radius-sm, 8px);
+    font-size: 1rem;
+    font-family: inherit;
+  }
+
+  .error-404__search-input:focus {
+    outline: 2px solid var(--color-accent, #FF6B35);
+    outline-offset: 1px;
+    border-color: var(--color-accent, #FF6B35);
+  }
+
+  .error-404__search-btn {
+    padding-block: 0.75rem;
+    padding-inline: 1.5rem;
+    border: none;
+    border-radius: var(--radius-sm, 8px);
+    background: var(--color-primary, #1A1A2E);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .error-404__search-btn:hover {
+    background: var(--color-accent, #FF6B35);
+  }
+
+  .error-404__links {
+    display: flex;
+    gap: var(--space-md, 1.5rem);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .error-404__link {
+    color: var(--color-accent, #FF6B35);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+
+  .error-404__link:hover {
+    color: var(--color-primary, #1A1A2E);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .error-404__search-btn { transition: none; }
+  }
+{% endstylesheet %}
+
+<section class="error-404">
+  <div class="error-404__inner">
+    <h1 class="error-404__heading">{{ 'sections.404.heading' | t }}</h1>
+    <p class="error-404__text">{{ 'sections.404.text' | t }}</p>
+
+    <form action="{{ routes.search_url }}" method="get" class="error-404__search" role="search">
+      <input
+        type="search"
+        name="q"
+        class="error-404__search-input"
+        placeholder="{{ 'sections.404.search_placeholder' | t }}"
+        aria-label="{{ 'sections.404.search_label' | t }}"
+      >
+      <button type="submit" class="error-404__search-btn">
+        {{ 'sections.404.search_button' | t }}
+      </button>
+    </form>
+
+    <div class="error-404__links">
+      <a href="/" class="error-404__link">{{ 'sections.404.back_home' | t }}</a>
+      <a href="javascript:history.back()" class="error-404__link">{{ 'sections.404.back_previous' | t }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main_404.name",
+  "tag": "section",
+  "class": "section-main-404",
+  "settings": [],
+  "presets": [
+    {
+      "name": "t:sections.main_404.name"
+    }
+  ]
+}
+{% endschema %}
