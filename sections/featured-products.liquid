@@ -1,25 +1,26 @@
-{%- style -%}
+{% stylesheet %}
   .featured-products {
-    padding: 6rem 1.5rem;
-    background: #F9FAFB;
+    padding-block: var(--space-xl, 6rem);
+    padding-inline: 1.5rem;
+    background: var(--color-bg-alt, #F9FAFB);
   }
 
   .featured-products__header {
     text-align: center;
-    max-width: 600px;
-    margin: 0 auto 3rem;
+    max-inline-size: 600px;
+    margin: 0 auto var(--space-lg, 3rem);
   }
 
   .featured-products__heading {
     font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 700;
-    color: {{ settings.color_primary }};
+    color: var(--color-primary, #1A1A2E);
     margin: 0 0 1rem;
   }
 
   .featured-products__subheading {
     font-size: 1.1rem;
-    color: {{ settings.color_text_light }};
+    color: var(--color-text-light, #6B7280);
     margin: 0;
   }
 
@@ -27,21 +28,23 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 2rem;
-    max-width: 1200px;
+    max-inline-size: 1200px;
     margin: 0 auto;
+    container-type: inline-size;
   }
 
   .product-card {
     background: #fff;
-    border-radius: 16px;
+    border-radius: var(--radius-md, 12px);
     overflow: hidden;
-    border: 1px solid #E5E7EB;
-    transition: all 0.3s ease;
+    border: 1px solid var(--color-border, #E5E7EB);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    isolation: isolate;
   }
 
   .product-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(26, 26, 46, 0.1);
+    box-shadow: var(--shadow-md, 0 8px 30px rgba(0,0,0,0.08));
   }
 
   .product-card__image {
@@ -51,11 +54,12 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    min-inline-size: 0;
   }
 
   .product-card__image img {
-    width: 100%;
-    height: 100%;
+    inline-size: 100%;
+    block-size: 100%;
     object-fit: cover;
     transition: transform 0.4s ease;
   }
@@ -65,45 +69,49 @@
   }
 
   .product-card__placeholder {
-    color: {{ settings.color_text_light }};
+    color: var(--color-text-light, #6B7280);
     font-size: 0.9rem;
   }
 
   .product-card__info {
     padding: 1.25rem;
+    min-inline-size: 0;
   }
 
   .product-card__title {
     font-size: 1rem;
     font-weight: 600;
-    color: {{ settings.color_primary }};
+    color: var(--color-primary, #1A1A2E);
     margin: 0 0 0.5rem;
     line-height: 1.4;
+    overflow-wrap: break-word;
   }
 
   .product-card__title a {
     text-decoration: none;
     color: inherit;
+    transition: color 0.2s;
   }
 
   .product-card__title a:hover {
-    color: {{ settings.color_accent }};
+    color: var(--color-accent, #FF6B35);
   }
 
   .product-card__price {
     font-size: 1.1rem;
     font-weight: 700;
-    color: {{ settings.color_accent }};
+    color: var(--color-accent, #FF6B35);
     margin: 0 0 1rem;
   }
 
   .product-card__btn {
     display: block;
-    width: 100%;
-    padding: 0.75rem;
+    inline-size: 100%;
+    padding-block: 0.75rem;
+    padding-inline: 1rem;
     border: none;
-    border-radius: 8px;
-    background: {{ settings.color_primary }};
+    border-radius: var(--radius-sm, 8px);
+    background: var(--color-primary, #1A1A2E);
     color: #fff;
     font-size: 0.9rem;
     font-weight: 600;
@@ -114,14 +122,28 @@
   }
 
   .product-card__btn:hover {
-    background: {{ settings.color_accent }};
+    background: var(--color-accent, #FF6B35);
   }
 
-  @media (max-width: 749px) {
-    .featured-products { padding: 4rem 1rem; }
-    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .product-card__btn:focus-visible {
+    outline: 2px solid var(--color-accent, #FF6B35);
+    outline-offset: 2px;
   }
-{%- endstyle -%}
+
+  @container (max-width: 600px) {
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product-card,
+    .product-card__image img {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
 
 <section class="featured-products" id="products-{{ section.id }}">
   <div class="featured-products__header">
@@ -136,15 +158,14 @@
         <div class="product-card">
           <div class="product-card__image">
             {%- if product.featured_image -%}
-              <img
-                src="{{ product.featured_image | image_url: width: 400 }}"
-                alt="{{ product.featured_image.alt | escape }}"
-                loading="lazy"
-                width="400"
-                height="400"
-              >
+              {{ product.featured_image | image_url: width: 400 | image_tag:
+                loading: 'lazy',
+                alt: product.featured_image.alt | escape,
+                width: 400,
+                height: 400
+              }}
             {%- else -%}
-              <span class="product-card__placeholder">No image</span>
+              <span class="product-card__placeholder">{{ 'products.product.no_image' | t }}</span>
             {%- endif -%}
           </div>
           <div class="product-card__info">
@@ -157,37 +178,34 @@
         </div>
       {%- endfor -%}
     {%- else -%}
-      {%- comment -%} Placeholder cards when no collection selected {%- endcomment -%}
       {%- for i in (1..4) -%}
         <div class="product-card">
           <div class="product-card__image">
-            <span class="product-card__placeholder">
-              {%- case i -%}
-                {%- when 1 -%} Custom T-Shirt
-                {%- when 2 -%} Photo Mug
-                {%- when 3 -%} Phone Case
-                {%- when 4 -%} Canvas Tote
-              {%- endcase -%}
-            </span>
+            {%- case i -%}
+              {%- when 1 -%}<img src="{{ 'product-tshirt.png' | asset_url }}" alt="{{ 'products.product.placeholders.tshirt' | t }}" loading="lazy" width="400" height="400">
+              {%- when 2 -%}<img src="{{ 'product-mug.png' | asset_url }}" alt="{{ 'products.product.placeholders.mug' | t }}" loading="lazy" width="400" height="400">
+              {%- when 3 -%}<img src="{{ 'product-phone-case.png' | asset_url }}" alt="{{ 'products.product.placeholders.phone_case' | t }}" loading="lazy" width="400" height="400">
+              {%- when 4 -%}<img src="{{ 'product-tote-bag.png' | asset_url }}" alt="{{ 'products.product.placeholders.tote_bag' | t }}" loading="lazy" width="400" height="400">
+            {%- endcase -%}
           </div>
           <div class="product-card__info">
             <h3 class="product-card__title">
               {%- case i -%}
-                {%- when 1 -%} Custom T-Shirt
-                {%- when 2 -%} Photo Mug
-                {%- when 3 -%} Phone Case
-                {%- when 4 -%} Canvas Tote Bag
+                {%- when 1 -%}{{ 'products.product.placeholders.tshirt' | t }}
+                {%- when 2 -%}{{ 'products.product.placeholders.mug' | t }}
+                {%- when 3 -%}{{ 'products.product.placeholders.phone_case' | t }}
+                {%- when 4 -%}{{ 'products.product.placeholders.tote_bag' | t }}
               {%- endcase -%}
             </h3>
             <p class="product-card__price">
               {%- case i -%}
-                {%- when 1 -%} $24.99
-                {%- when 2 -%} $18.99
-                {%- when 3 -%} $15.99
-                {%- when 4 -%} $19.99
+                {%- when 1 -%}$24.99
+                {%- when 2 -%}$18.99
+                {%- when 3 -%}$15.99
+                {%- when 4 -%}$19.99
               {%- endcase -%}
             </p>
-            <a href="/collections/all" class="product-card__btn">Customize Now</a>
+            <a href="/collections/all" class="product-card__btn">{{ 'products.product.customize' | t }}</a>
           </div>
         </div>
       {%- endfor -%}
@@ -197,31 +215,42 @@
 
 {% schema %}
 {
-  "name": "Featured Products",
+  "name": "t:sections.featured_products.name",
   "tag": "section",
+  "class": "section-featured-products",
+  "enabled_on": {
+    "templates": ["index"]
+  },
   "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.featured_products.settings.header_content"
+    },
     {
       "type": "text",
       "id": "heading",
-      "label": "Heading",
+      "label": "t:sections.featured_products.settings.heading",
       "default": "Start Customizing"
     },
     {
       "type": "text",
       "id": "subheading",
-      "label": "Subheading",
+      "label": "t:sections.featured_products.settings.subheading",
       "default": "Phase 1 products — ready to ship worldwide"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.featured_products.settings.header_collection"
     },
     {
       "type": "collection",
       "id": "collection",
-      "label": "Collection",
-      "info": "Select a collection to display products"
+      "label": "t:sections.featured_products.settings.collection"
     },
     {
       "type": "range",
       "id": "products_to_show",
-      "label": "Products to Show",
+      "label": "t:sections.featured_products.settings.products_to_show",
       "min": 2,
       "max": 12,
       "step": 1,
@@ -230,7 +259,12 @@
   ],
   "presets": [
     {
-      "name": "Featured Products"
+      "name": "t:sections.featured_products.name",
+      "settings": {
+        "heading": "Start Customizing",
+        "subheading": "Phase 1 products — ready to ship worldwide",
+        "products_to_show": 4
+      }
     }
   ]
 }
