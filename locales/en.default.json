@@ -1,7 +1,9 @@
 {
   "general": {
     "accessibility": {
-      "skip_to_content": "Skip to content"
+      "skip_to_content": "Skip to content",
+      "close": "Close",
+      "menu": "Menu"
     }
   },
   "products": {
@@ -11,13 +13,96 @@
       "unavailable": "Unavailable",
       "on_sale": "Sale",
       "quantity": "Quantity",
-      "customize": "Customize Now"
+      "customize": "Customize Now",
+      "no_image": "No image",
+      "placeholders": {
+        "tshirt": "Custom T-Shirt",
+        "mug": "Photo Mug",
+        "phone_case": "Phone Case",
+        "tote_bag": "Canvas Tote Bag"
+      }
+    }
+  },
+  "sections": {
+    "hero_banner": {
+      "heading": "Upload once, own everything.",
+      "subheading": "One logo → full brand kit. T-shirts, mugs, phone cases & more — auto-generated, zero design skills needed.",
+      "start_creating": "Start Creating",
+      "see_how_it_works": "See How It Works"
+    },
+    "features_grid": {
+      "heading": "Why Ownly?",
+      "subheading": "The world's first one-logo-to-everything platform",
+      "upload_title": "Upload Your Logo",
+      "upload_text": "Drop any image — we handle the rest. No design tools, no templates, no hassle.",
+      "ai_title": "AI Auto-Adapts",
+      "ai_text": "Our AI instantly adapts your design to fit every product perfectly. One upload, infinite possibilities.",
+      "kit_title": "Full Kit Delivery",
+      "kit_text": "Order individual items or complete kits. Campaign swag, wedding favors, brand merch — all in one click."
+    },
+    "featured_products": {
+      "heading": "Start Customizing",
+      "subheading": "Phase 1 products — ready to ship worldwide"
+    },
+    "kit_showcase": {
+      "heading": "Full-Case Kits",
+      "subheading": "One design → complete branded sets. Save 15-20% vs buying individually.",
+      "badge": "Kit",
+      "includes": "Includes:",
+      "save_vs_individual": "Save 15-20% vs buying individually",
+      "order_kit": "Order Kit"
+    },
+    "how_it_works": {
+      "heading": "How It Works",
+      "subheading": "From upload to delivery in 4 simple steps",
+      "step_1_title": "Upload",
+      "step_1_text": "Drop your logo, artwork, or any image. We accept PNG, JPG, SVG.",
+      "step_2_title": "Customize",
+      "step_2_text": "AI adapts your design to fit each product perfectly. Preview in real-time.",
+      "step_3_title": "Order",
+      "step_3_text": "Pick individual items or grab a full Kit. Secure checkout via PayPal.",
+      "step_4_title": "Receive",
+      "step_4_text": "We produce and ship worldwide. Tracking included. 7-15 day delivery."
+    },
+    "cta_banner": {
+      "heading": "Ready to Own Your Brand?",
+      "subheading": "Join hundreds of creators, small businesses, and event organizers who trust Ownly.",
+      "button": "Get Started Free"
+    },
+    "footer": {
+      "products": "Products",
+      "t_shirts": "T-Shirts",
+      "mugs": "Mugs",
+      "phone_cases": "Phone Cases",
+      "full_kits": "Full Kits",
+      "company": "Company",
+      "about_us": "About Us",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "blog": "Blog",
+      "support": "Support",
+      "shipping": "Shipping",
+      "returns": "Returns",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "all_rights_reserved": "All rights reserved.",
+      "404": {
+        "heading": "Page not found",
+        "text": "The page you were looking for does not exist. Maybe you want to try the search instead?",
+        "search_placeholder": "Search...",
+        "search_label": "Search the store",
+        "search_button": "Search",
+        "back_home": "Back to Ownly",
+        "back_previous": "previous page"
+      }
     }
   },
   "collections": {
     "general": {
       "no_matches": "Sorry, there are no products in this collection.",
-      "all": "All Products"
+      "all": "All Products",
+      "product_count": "{{ count }} products",
+      "pagination": "Pagination"
     }
   },
   "cart": {
@@ -28,6 +113,14 @@
       "checkout": "Check out",
       "subtotal": "Subtotal",
       "remove": "Remove"
+    }
+  },
+  "blogs": {
+    "article": {
+      "read_more": "Read more"
+    },
+    "general": {
+      "no_articles": "There are no articles yet."
     }
   }
 }
